@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import Tools.FileMatrix;
 import Tools.Matrix;
+import Tools.PrintMatrix;
 import Tools.Utils;
 
 /**
@@ -25,7 +26,17 @@ public class Decode {
 	}
 
 	private void printMenu() {
-		FileMatrix guideMatrix = Matrix.readMatrixFile(input, "ARCHIVO PARA CIFRAR                    |", 4);
-		Utils.print(Matrix.matrixToString(Matrix.matrizInversa(guideMatrix.fileMatrix)));
+		// PEDIR MATRICES
+		FileMatrix textMatrix = Matrix.readMatrixFile(input, "ARCHIVO CIFRADO                        |", 0, 0, true);
+		FileMatrix guideMatrix = Matrix.readMatrixFile(input, "ARCHIVO PARA DECIFRAR                  |", 0, 0, true);
+
+		// VERIFICAR SI ES POSIBLE MULTIPLICAR
+		if (textMatrix.fileMatrix[0].length == guideMatrix.fileMatrix.length) {
+			// CALCULAR MATRIZ INVERSA DE NXN
+			double[][] inverted = Matrix.invertedMatrix(guideMatrix.fileMatrix);
+			long[][] decoded = Matrix.multiplyMatrix(textMatrix.fileMatrix, inverted);
+
+			Utils.print(Matrix.asciiMatrixToString(decoded));
+		}
 	}
 }

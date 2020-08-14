@@ -1,8 +1,8 @@
 package Tools;
 
-import java.text.DecimalFormat;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.io.File;
 
@@ -20,14 +20,14 @@ public class Matrix {
 	 */
 	public static int[][] multiplyMatrix(int[][] matrix, int[][] fileMatrix) {
 		// VARIABLES DE MATRICES
-		int unitFactor = matrix[0].length;
-		int[][] outMatrix = new int[matrix.length][unitFactor];
+		int cols = matrix[0].length;
+		int[][] outMatrix = new int[matrix.length][cols];
 
 		for (int matrixRows = 0; matrixRows < matrix.length; matrixRows++) {
 			// FILA ACTUAL
-			int[] currentRow = new int[unitFactor];
+			int[] currentRow = new int[cols];
 
-			for (int rowIndex = 0; rowIndex < unitFactor; rowIndex++) {
+			for (int rowIndex = 0; rowIndex < cols; rowIndex++) {
 				// UNIDAD DE SUMA
 				int unit = 0;
 
@@ -48,73 +48,41 @@ public class Matrix {
 	}
 
 	/**
-	 * Convierte una matriz entera a texto
+	 * Multiplica dos matrices cuando sea posible
 	 * 
-	 * @param matrix Matriz NxM
-	 * @return String Texto de la matriz
+	 * @param matrix     matriz doble A de NxM
+	 * @param fileMatrix matriz entera B de NxM
+	 * @return int[][] matriz resultante de NxM
 	 */
-	public static String matrixToString(int[][] matrix) {
-		// PLACEHOLDER
-		String out = "<!>\n";
+	public static long[][] multiplyMatrix(int[][] matrix, double[][] fileMatrix) {
+		// VARIABLES DE MATRICES
+		int cols = matrix[0].length;
+		long[][] outMatrix = new long[matrix.length][cols];
 
-		// FORMATO DE DIGITOS
-		DecimalFormat formater = new DecimalFormat("+0000;-0000");
+		for (int matrixRows = 0; matrixRows < matrix.length; matrixRows++) {
+			// FILA ACTUAL
+			long[] currentRow = new long[cols];
 
-		// RECORRER MATRIZ
-		for (int row = 0; row < matrix.length; row++) {
-			for (int col = 0; col < matrix[0].length; col++)
-				// ASIGNAR ENTERO CON FORMATO
-				out += " | " + formater.format(matrix[row][col]);
+			for (int rowIndex = 0; rowIndex < cols; rowIndex++) {
+				// UNIDAD DE SUMA
+				Double unit = 0.0;
 
-			// AGREGAR PLACEHOLDERS
-			out += " |\n";
-			out += "<!>\n";
+				// OBTENER FACTOR
+				for (int matrixCols = 0; matrixCols < matrix[0].length; matrixCols++) {
+					Double product = (Double) (matrix[matrixRows][matrixCols] * fileMatrix[matrixCols][rowIndex]);
+					unit += product;
+				}
+
+				// ASIGNAR ESPACIO A FILA
+				currentRow[rowIndex] = Math.round(unit);
+			}
+
+			// ASIGNAR FILA
+			outMatrix[matrixRows] = currentRow;
 		}
 
-		// OBTENER LONGITUD DE LINEA
-		String[] lines = out.split("<!>\n");
-		int maxLine = lines[lines.length - 1].length();
-
-		// REMPLAZAR PLACEHOLDER POR LINEAS
-		out = out.replaceAll("<!>", " " + "-".repeat(maxLine - 2));
-
-		// RETORNAR STRING
-		return out;
-	}
-
-	/**
-	 * Convierte una matriz doble a texto
-	 * 
-	 * @param matrix Matriz de NxM
-	 * @return String Texto de la matriz
-	 */
-	public static String matrixToString(double[][] matrix) {
-		// PLACEHOLDER
-		String out = "<!>\n";
-
-		// FORMATO DE DIGITOS
-		DecimalFormat formater = new DecimalFormat("+000.000;-000.000");
-
-		// RECORRER MATRIZ
-		for (int row = 0; row < matrix.length; row++) {
-			for (int col = 0; col < matrix[0].length; col++)
-				// ASIGNAR ENTERO CON FORMATO
-				out += " | " + formater.format(matrix[row][col]);
-
-			// AGREGAR PLACEHOLDERS
-			out += " |\n";
-			out += "<!>\n";
-		}
-
-		// OBTENER LONGITUD DE LINEA
-		String[] lines = out.split("<!>\n");
-		int maxLine = lines[lines.length - 1].length();
-
-		// REMPLAZAR PLACEHOLDER POR LINEAS
-		out = out.replaceAll("<!>", " " + "-".repeat(maxLine - 2));
-
-		// RETORNAR STRING
-		return out;
+		// RETORNAR FILA
+		return outMatrix;
 	}
 
 	/**
@@ -125,9 +93,9 @@ public class Matrix {
 	 * @param unitFactor Factor a evaluar matriz cuadrada NxN
 	 * @return FileMatrix
 	 */
-	public static FileMatrix readMatrixFile(Scanner input, String title, int unitFactor) {
+	public static FileMatrix readMatrixFile(Scanner input, String title, int rows, int cols, boolean inferSize) {
 		// RUTA
-		int[][] fileMatrix = new int[unitFactor][unitFactor];
+		int[][] fileMatrix = new int[rows][cols];
 		boolean breakRead = false;
 		int errCode = 0;
 
@@ -142,7 +110,8 @@ public class Matrix {
 			while (pathname.length() == 0) {
 				// IMPRIMIR MENU
 				Menus.printMenu(eString + "\n| Escribe la ruta del archivo:           |");
-				Utils.print("\nRuta relativa => ");
+				Utils.print(
+						"\nRaiz: " + Paths.get("").toAbsolutePath().getParent() + "/\n" + "Escribir direccion (LFS o UNIX): ");
 
 				if (input.hasNext())
 					// ASIGNAR RUTA
@@ -164,14 +133,22 @@ public class Matrix {
 						tmpFileStr += line + "\n";
 
 					// ARRAY DE STRINGS
+					String[] lineRows = tmpFileStr.split("\n");
+					String[] lineCols = lineRows[0].split(",");
 					String[] tmpLine = tmpFileStr.split(",|\n");
 
+					// ASIGNAR DIMENSION DINAMICA
+					if (inferSize)
+						fileMatrix = new int[lineRows.length][lineCols.length];
+
 					// VERIFICAR LONGITUD
-					if (tmpLine.length == unitFactor * unitFactor) {
+					if (tmpLine.length == (inferSize ? lineRows.length * lineCols.length : rows * cols)) {
 						// CONVERTIR A ENTERO
-						for (int lineIndex = 0; lineIndex < unitFactor; lineIndex++)
-							for (int lineCol = 0; lineCol < unitFactor; lineCol++)
-								fileMatrix[lineIndex][lineCol] = Integer.parseInt(tmpLine[lineCol + (lineIndex * unitFactor)]);
+						for (int lineIndex = 0; lineIndex < (inferSize ? lineRows.length : rows); lineIndex++)
+							for (int lineCol = 0; lineCol < (inferSize ? lineCols.length : cols); lineCol++)
+								fileMatrix[lineIndex][lineCol] = Integer
+										.parseInt(tmpLine[lineCol + (lineIndex * (inferSize ? lineCols.length : cols))]);
+
 						// SALIR DEL CICLO
 						breakRead = true;
 					} else
@@ -187,7 +164,7 @@ public class Matrix {
 		}
 
 		// RETORNAR MATRIZ
-		return new FileMatrix(fileMatrix, matrixToString(fileMatrix));
+		return new FileMatrix(fileMatrix, PrintMatrix.toString(fileMatrix));
 	}
 
 	/**
@@ -219,7 +196,7 @@ public class Matrix {
 				matrix[rowsIndex][colsIndex] = ascii[colsIndex + (rowsIndex * cols)];
 
 		// DEVOLVER TEXTO
-		return new FileMatrix(matrix, matrixToString(matrix));
+		return new FileMatrix(matrix, PrintMatrix.toString(matrix));
 	}
 
 	/**
@@ -365,7 +342,7 @@ public class Matrix {
 	 * @param matrix Matriz NxN
 	 * @return double[][]
 	 */
-	public static double[][] matrizInversa(int[][] matrix) {
+	public static double[][] invertedMatrix(int[][] matrix) {
 		// DETERMINANTE Y ADJUNTA
 		double det = (double) 1 / determinant(matrix);
 		int[][] nMatrix = attachedMatrix(matrix);
@@ -375,5 +352,20 @@ public class Matrix {
 
 		// RETORNAR INVERSA
 		return inverted;
+	}
+
+	public static String asciiMatrixToString(long[][] asciiMatrix) {
+		// SALIDA
+		String out = "";
+
+		for (int row = 0; row < asciiMatrix.length; row++)
+			for (int col = 0; col < asciiMatrix[0].length; col++) {
+				// ASIGNAR CARACTER
+				int currentChar = (int) asciiMatrix[row][col];
+				out += Character.toString((char) currentChar);
+			}
+
+		// RETORNAR SALIDA
+		return out;
 	}
 }

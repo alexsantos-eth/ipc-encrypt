@@ -5,6 +5,7 @@ import java.util.Scanner;
 import Tools.FileMatrix;
 import Tools.Matrix;
 import Tools.Menus;
+import Tools.PrintMatrix;
 import Tools.Utils;
 
 /**
@@ -41,13 +42,15 @@ public class Encode {
 
 		// OBTENER MATRICES
 		FileMatrix mAsciiMatrix = Matrix.getAsciiMatrix(text, factor);
-		FileMatrix guideMatrix = Matrix.readMatrixFile(input, "ARCHIVO PARA CIFRAR                    |", factor);
+		FileMatrix guideMatrix = Matrix.readMatrixFile(input, "ARCHIVO PARA CIFRAR                    |", factor, factor,
+				false);
 
 		// MULTIPLICAR MATRICES
 		encodeMatrix = Matrix.multiplyMatrix(mAsciiMatrix.fileMatrix, guideMatrix.fileMatrix);
-		encodeMaString = Matrix.matrixToString(encodeMatrix);
+		encodeMaString = PrintMatrix.toString(encodeMatrix);
 
 		// IMPRIMIR MATRIZ RESULTANTE
-		Utils.print(encodeMaString);
+		Utils.print("\nCifrado completo!, este es tu mensaje secreto: \n\n" + encodeMaString);
+		Utils.promptEnterKey();
 	}
 }

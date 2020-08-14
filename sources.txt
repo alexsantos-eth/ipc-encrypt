@@ -3,6 +3,7 @@
 ./src/Menus/Decode.java
 ./src/Main.java
 ./src/Interfaces/OutputMatrix.java
+./src/Tools/PrintMatrix.java
 ./src/Tools/Menus.java
 ./src/Tools/Utils.java
 ./src/Tools/FileMatrix.java

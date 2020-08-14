@@ -23,18 +23,30 @@ public class MainMenu {
 	private void printMenu() {
 		// OBTENER INPUT
 		Scanner input = new Scanner(System.in);
-		int option = Menus.getOption("| (1) Cifrar | (2) Decifrar | (3) Gauss-Jordan |", "Ingrese una opcion", input);
+		boolean breakMenu = false;
 
-		// INICIAR CLASE
-		switch (option) {
-		case (1): {
-			new Encode(input);
-			break;
-		}
-		case (2): {
-			new Decode(input);
-			break;
-		}
+		while (!breakMenu) {
+			int option = Menus.getOption("| (1) Cifrar | (2) Decifrar | (3) Gauss-Jordan | (4) Salir |", "Ingrese una opcion",
+					input);
+
+			// INICIAR CLASE
+			switch (option) {
+			case (1): {
+				new Encode(input);
+				break;
+			}
+			case (2): {
+				new Decode(input);
+				break;
+			}
+			case (4): {
+				breakMenu = true;
+				break;
+			}
+			default: {
+				breakMenu = false;
+			}
+			}
 		}
 
 		// CERRAR SCANNER

@@ -41,7 +41,7 @@ public class Menus {
 			printMenu(options);
 
 			// FORMATO PARA INGRESAR
-			Utils.print("\n" + name + " => ");
+			Utils.print("\n" + name + " $ ");
 
 			// RETORNAR ENTERO
 			option = input.nextInt();
@@ -68,7 +68,7 @@ public class Menus {
 			printMenu(options);
 
 			// FORMATO PARA INGRESAR
-			Utils.print("\n" + name + " => ");
+			Utils.print("\n" + name + " $ ");
 
 			// ASIGNAR TEXTO
 			text = input.nextLine();

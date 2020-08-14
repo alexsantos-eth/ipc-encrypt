@@ -1,5 +1,8 @@
 package Tools;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 /**
  * Utils
  */
@@ -12,6 +15,15 @@ public class Utils {
 	 */
 	public static void print(String msg) {
 		System.out.print(msg);
+	}
+
+	public static void promptEnterKey() {
+		try {
+			Utils.print("\nPresiona \"ENTER\" para continuar... ");
+			System.in.read(new byte[2]);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
