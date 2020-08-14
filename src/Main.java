@@ -1,7 +1,7 @@
 import Menus.MainMenu;
 
 /**
- * Main
+ * Practica 1
  * 
  * @author Alex Santos https://github.com/alexsan-dev
  * @version v1.0.0

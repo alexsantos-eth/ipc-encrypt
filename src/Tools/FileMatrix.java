@@ -8,11 +8,12 @@ public class FileMatrix implements OutputMatrix {
 	public String matrixString = "";
 
 	/**
-	 * @param fileMatrix
-	 * @param matrixString
+	 * Constructor: retornar una matriz de enteros y una matriz como texto
+	 * 
+	 * @param fileMatrix   Matriz de enteros
+	 * @param matrixString Matriz como texto
 	 * @return
 	 */
-	// INICIALIZAR
 	public FileMatrix(int[][] fileMatrix, String matrixString) {
 		this.fileMatrix = fileMatrix;
 		this.matrixString = matrixString;

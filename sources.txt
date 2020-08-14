@@ -1,5 +1,6 @@
 ./src/Menus/Encode.java
 ./src/Menus/MainMenu.java
+./src/Menus/Decode.java
 ./src/Main.java
 ./src/Interfaces/OutputMatrix.java
 ./src/Tools/Menus.java

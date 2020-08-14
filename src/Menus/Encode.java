@@ -16,7 +16,9 @@ public class Encode {
 	String encodeMaString;
 
 	/**
-	 * @param input
+	 * Clase para cifrar mensaje
+	 * 
+	 * @param input Scanner global
 	 * @return
 	 */
 	public Encode(Scanner input) {
@@ -27,6 +29,9 @@ public class Encode {
 		printMenu();
 	}
 
+	/**
+	 * Imprimir menu para cifrar
+	 */
 	private void printMenu() {
 		// LEER TEXTO DE USUARIO
 		String text = Menus.getOption("| Escribe el texto que deseas cifrar: |", "Caracteres alfanumericos", input, true);

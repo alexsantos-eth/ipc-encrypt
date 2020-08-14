@@ -17,6 +17,9 @@ public class MainMenu {
 		printMenu();
 	}
 
+	/**
+	 * Imprimir menu principal
+	 */
 	private void printMenu() {
 		// OBTENER INPUT
 		Scanner input = new Scanner(System.in);
@@ -26,6 +29,10 @@ public class MainMenu {
 		switch (option) {
 		case (1): {
 			new Encode(input);
+			break;
+		}
+		case (2): {
+			new Decode(input);
 			break;
 		}
 		}

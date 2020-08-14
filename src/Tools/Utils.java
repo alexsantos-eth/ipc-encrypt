@@ -6,18 +6,20 @@ package Tools;
 public class Utils {
 
 	/**
+	 * IMPRIMIR EN CONSOLA
+	 * 
 	 * @param msg
 	 */
-	// IMPRIMIR EN CONSOLA
 	public static void print(String msg) {
 		System.out.print(msg);
 	}
 
 	/**
-	 * @param length
+	 * Obtener el multiplo de un numero
+	 * 
+	 * @param length Numero o longitud
 	 * @return int
 	 */
-	// OBTENER MULTIPLO
 	public static int getFactor(int length) {
 		int unitFactor = 0;
 		int[] factors = { 3, 4, 5, 7, 11, 13, 17 };
@@ -32,7 +34,11 @@ public class Utils {
 		return unitFactor;
 	}
 
-	// DAR FORMATO A LOS MENUS
+	/**
+	 * Limpiar pantalla
+	 * 
+	 * @return
+	 */
 	public static void cls() {
 		// LIMPIAR PANTALLA
 		System.out.print("\033[H\033[2J");

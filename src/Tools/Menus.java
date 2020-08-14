@@ -8,9 +8,10 @@ import java.util.Scanner;
 public class Menus {
 
 	/**
-	 * @param title
+	 * Imprime en pantalla un menu dentro de lineas
+	 * 
+	 * @param title Texto del titulo
 	 */
-	// IMPRIMIR MENU
 	public static void printMenu(String title) {
 		// LIMPIAR
 		Utils.cls();
@@ -24,12 +25,13 @@ public class Menus {
 	}
 
 	/**
-	 * @param options
-	 * @param name
-	 * @param input
+	 * Obtener un entero como opcion
+	 * 
+	 * @param options Titulo del prompt (Listado de opciones)
+	 * @param name    Nombre del usuario a mostrar (Informacion de entrada)
+	 * @param input   Scanner global
 	 * @return int
 	 */
-	// OPTENER OPCION DE CUALQUIER MENU COMO NUMERO
 	public static int getOption(String options, String name, Scanner input) {
 		// SALIDA
 		int option = 0;
@@ -49,14 +51,15 @@ public class Menus {
 	}
 
 	/**
-	 * @param options
-	 * @param name
-	 * @param input
-	 * @param string
+	 * Obtener un string como opcion
+	 * 
+	 * @param options  Titulo del prompt (Listado de opciones)
+	 * @param name     Nombre del usuario a mostrar (Informacion de entrada)
+	 * @param input    Scanner global
+	 * @param isString Tratar opcion como texto
 	 * @return String
 	 */
-	// OPTENER OPCION DE CUALQUIER MENU COMO STRING
-	public static String getOption(String options, String name, Scanner input, Boolean string) {
+	public static String getOption(String options, String name, Scanner input, Boolean isString) {
 		// SALIDA
 		String text = "";
 
