@@ -3,6 +3,7 @@ package Tools;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.io.File;
 
@@ -164,7 +165,7 @@ public class Matrix {
 		}
 
 		// RETORNAR MATRIZ
-		return new FileMatrix(fileMatrix, PrintMatrix.toString(fileMatrix));
+		return new FileMatrix(fileMatrix, toString(fileMatrix, false));
 	}
 
 	/**
@@ -196,7 +197,7 @@ public class Matrix {
 				matrix[rowsIndex][colsIndex] = ascii[colsIndex + (rowsIndex * cols)];
 
 		// DEVOLVER TEXTO
-		return new FileMatrix(matrix, PrintMatrix.toString(matrix));
+		return new FileMatrix(matrix, toString(matrix, false));
 	}
 
 	/**
@@ -372,6 +373,48 @@ public class Matrix {
 			}
 
 		// RETORNAR SALIDA
+		return out;
+	}
+
+	/**
+	 * Convierte una matriz entera a texto
+	 * 
+	 * @param matrix Matriz NxM
+	 * @return String Texto de la matriz
+	 */
+	public static String toString(int[][] matrix, boolean plain) {
+		// PLACEHOLDER
+		String out = plain ? "" : "<!>\n";
+
+		// FORMATO DE DIGITOS
+		String format = plain ? "0000;-0000" : "+0000;-0000";
+		DecimalFormat formater = new DecimalFormat(format);
+
+		// RECORRER MATRIZ
+		for (int row = 0; row < matrix.length; row++) {
+			for (int col = 0; col < matrix[0].length; col++)
+				// ASIGNAR ENTERO CON FORMATO
+				out += (plain ? "" : " | ") + formater.format(matrix[row][col]) + (plain ? "," : "");
+
+			// AGREGAR PLACEHOLDERS
+			out += plain ? "\n" : " |\n";
+
+			if (!plain) {
+				out += "<!>\n";
+			} else
+				out = out.replaceAll(",\n", "\n");
+		}
+
+		if (!plain) {
+			// OBTENER LONGITUD DE LINEA
+			String[] lines = out.split("<!>\n");
+			int maxLine = lines[lines.length - 1].length();
+
+			// REMPLAZAR PLACEHOLDER POR LINEAS
+			out = out.replaceAll("<!>", " " + "-".repeat(maxLine - 2));
+		}
+
+		// RETORNAR STRING
 		return out;
 	}
 }

@@ -3,6 +3,7 @@ package Menus;
 import java.util.Scanner;
 
 import Tools.FileMatrix;
+import Tools.Files;
 import Tools.Matrix;
 import Tools.Utils;
 
@@ -35,8 +36,11 @@ public class Decode {
 			double[][] inverted = Matrix.invertedMatrix(guideMatrix.fileMatrix);
 			long[][] decoded = Matrix.multiplyMatrix(textMatrix.fileMatrix, inverted);
 
-			Utils.print(
-					"\nDecifrado completo!, Este es tu mensaje original: \n\n" + Matrix.asciiMatrixToString(decoded) + "\n");
+			// TEXTO DE MATRIZ
+			String decodeString = Matrix.asciiMatrixToString(decoded);
+
+			Utils.print("\nDecifrado completo!, Este es tu mensaje original: \n\n" + decodeString + "\n");
+			Files.createMatrixFile(decodeString);
 			Utils.promptEnterKey();
 		}
 	}

@@ -3,9 +3,9 @@ package Menus;
 import java.util.Scanner;
 
 import Tools.FileMatrix;
+import Tools.Files;
 import Tools.Matrix;
 import Tools.Menus;
-import Tools.PrintMatrix;
 import Tools.Utils;
 
 /**
@@ -47,10 +47,12 @@ public class Encode {
 
 		// MULTIPLICAR MATRICES
 		encodeMatrix = Matrix.multiplyMatrix(mAsciiMatrix.fileMatrix, guideMatrix.fileMatrix);
-		encodeMaString = PrintMatrix.toString(encodeMatrix);
+		encodeMaString = Matrix.toString(encodeMatrix, false);
+		String plainMatrix = Matrix.toString(encodeMatrix, true);
 
 		// IMPRIMIR MATRIZ RESULTANTE
 		Utils.print("\nCifrado completo!, este es tu mensaje secreto: \n\n" + encodeMaString);
+		Files.createMatrixFile(plainMatrix);
 		Utils.promptEnterKey();
 	}
 }
