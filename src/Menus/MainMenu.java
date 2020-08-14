@@ -24,15 +24,18 @@ public class MainMenu {
     }
 
     private void printMenu() {
-        // LIMPIAR PANTALLA
-        Utils.cls();
-
         while (!breakMenu) {
             // IMPRIMIR MENU
-            Utils.printMenu("| (1) Cifrar (2) Decifrar (3) Gauss-Jordan |");
+            Utils.printMenu("| (1) Cifrar | (2) Decifrar | (3) Gauss-Jordan |");
 
             // LEER OPCION
             option = Utils.getOption("Ingrese una opcion", input);
+
+            switch (option) {
+            case (1):
+                new Encode();
+                break;
+            }
 
             breakMenu = true;
         }
