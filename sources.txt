@@ -1,5 +1,7 @@
 ./src/Menus/Encode.java
 ./src/Menus/MainMenu.java
 ./src/Main.java
+./src/Tools/Menus.java
 ./src/Tools/Utils.java
 ./src/Tools/FileMatrix.java
+./src/Tools/Matrix.java

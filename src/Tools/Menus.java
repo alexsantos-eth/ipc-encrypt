@@ -13,10 +13,11 @@ public class Menus {
         Utils.cls();
 
         // LINEAS DE SEPARACION
-        String lines = "-".repeat(title.length());
+        String[] lines = title.split("\n");
+        String divider = "-".repeat(lines[lines.length - 1].length());
 
         // IMPRIMIR
-        System.out.print(lines + "\n" + title + "\n" + lines);
+        Utils.print(divider + "\n" + title + "\n" + divider);
     }
 
     // OPTENER OPCION DE CUALQUIER MENU COMO NUMERO
@@ -29,7 +30,7 @@ public class Menus {
             printMenu(options);
 
             // FORMATO PARA INGRESAR
-            System.out.print("\n" + name + " => ");
+            Utils.print("\n" + name + " => ");
 
             // RETORNAR ENTERO
             option = input.nextInt();
@@ -48,7 +49,7 @@ public class Menus {
             printMenu(options);
 
             // FORMATO PARA INGRESAR
-            System.out.print("\n" + name + " => ");
+            Utils.print("\n" + name + " => ");
 
             // ASIGNAR TEXTO
             text = input.nextLine();

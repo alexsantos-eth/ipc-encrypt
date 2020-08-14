@@ -33,7 +33,7 @@ public class Encode {
 
         // OBTENER MATRICES
         FileMatrix mAsciiMatrix = Matrix.getAsciiMatrix(text, factor);
-        FileMatrix guideMatrix = Matrix.readMatrixFile(input, "ARCHIVO PARA CIFRAR", factor);
+        FileMatrix guideMatrix = Matrix.readMatrixFile(input, "ARCHIVO PARA CIFRAR                    |", factor);
 
         // MULTIPLICAR MATRICES
         encodeMatrix = Matrix.multiplyMatrix(mAsciiMatrix.fileMatrix, guideMatrix.fileMatrix);

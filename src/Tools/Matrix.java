@@ -79,18 +79,18 @@ public class Matrix {
         while (!breakRead) {
             // RUTA
             String pathname = "";
-            String eString = errCode == 3 ? "| Error 03: Longitud del archivo invalida "
-                    : errCode == 2 ? "| Error 02: No es posible leer el archivo"
-                            : errCode == 1 ? "| Error 01: la ruta no es un  archivo " : "| " + title;
+            String eString = errCode == 3 ? "| Error 03: Longitud de archivo invalida |"
+                    : errCode == 2 ? "| Error 02: No se pudo leer el archivo   |"
+                            : errCode == 1 ? "| Error 01: La ruta no es un archivo     |" : "| " + title;
 
             // PEDIR RUTA
             while (pathname.length() == 0) {
                 // IMPRIMIR MENU
-                Menus.printMenu(eString + "\n| Escribe la ruta del archivo : |");
+                Menus.printMenu(eString + "\n| Escribe la ruta del archivo:           |");
                 Utils.print("\nRuta relativa => ");
 
                 // ASIGNAR RUTA
-                pathname = input.nextLine();
+                pathname = "../" + input.nextLine();
             }
 
             // LEER ARCHIVO
