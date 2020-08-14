@@ -1,4 +1,5 @@
 # JAVA
 
 *.class
-Classes/
+
+/Classes

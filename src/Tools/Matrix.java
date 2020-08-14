@@ -10,6 +10,12 @@ import java.util.Scanner;
  * Matrix
  */
 public class Matrix {
+
+    /**
+     * @param matrix
+     * @param fileMatrix
+     * @return int[][]
+     */
     public static int[][] multiplyMatrix(int[][] matrix, int[][] fileMatrix) {
         // VARIABLES DE MATRICES
         int unitFactor = matrix[0].length;
@@ -39,6 +45,10 @@ public class Matrix {
         return outMatrix;
     }
 
+    /**
+     * @param matrix
+     * @return String
+     */
     // CONVERTIR MATRIZ A TEXTO
     public static String matrixToString(int[][] matrix) {
         // PLACEHOLDER
@@ -69,6 +79,12 @@ public class Matrix {
         return out;
     }
 
+    /**
+     * @param input
+     * @param title
+     * @param unitFactor
+     * @return FileMatrix
+     */
     // LEER ARCHIVO DE TEXTO
     public static FileMatrix readMatrixFile(Scanner input, String title, int unitFactor) {
         // RUTA
@@ -135,6 +151,11 @@ public class Matrix {
         return new FileMatrix(fileMatrix, matrixToString(fileMatrix));
     }
 
+    /**
+     * @param text
+     * @param cols
+     * @return FileMatrix
+     */
     // ASIGNAR MATRIZ
     public static FileMatrix getAsciiMatrix(String text, int cols) {
         // INICIALIZAR

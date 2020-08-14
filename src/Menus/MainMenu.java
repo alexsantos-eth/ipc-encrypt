@@ -8,6 +8,10 @@ import Tools.Menus;
  * MainMenu
  */
 public class MainMenu {
+
+    /**
+     * @return
+     */
     public MainMenu() {
         // MOSTRAR MENU
         printMenu();

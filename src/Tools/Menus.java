@@ -7,6 +7,9 @@ import java.util.Scanner;
  */
 public class Menus {
 
+    /**
+     * @param title
+     */
     // IMPRIMIR MENU
     public static void printMenu(String title) {
         // LIMPIAR
@@ -20,6 +23,12 @@ public class Menus {
         Utils.print(divider + "\n" + title + "\n" + divider);
     }
 
+    /**
+     * @param options
+     * @param name
+     * @param input
+     * @return int
+     */
     // OPTENER OPCION DE CUALQUIER MENU COMO NUMERO
     public static int getOption(String options, String name, Scanner input) {
         // SALIDA
@@ -39,6 +48,13 @@ public class Menus {
         return option;
     }
 
+    /**
+     * @param options
+     * @param name
+     * @param input
+     * @param string
+     * @return String
+     */
     // OPTENER OPCION DE CUALQUIER MENU COMO STRING
     public static String getOption(String options, String name, Scanner input, Boolean string) {
         // SALIDA

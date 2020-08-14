@@ -4,11 +4,19 @@ package Tools;
  * Utils
  */
 public class Utils {
+
+    /**
+     * @param msg
+     */
     // IMPRIMIR EN CONSOLA
     public static void print(String msg) {
         System.out.print(msg);
     }
 
+    /**
+     * @param length
+     * @return int
+     */
     // OBTENER MULTIPLO
     public static int getFactor(int length) {
         int unitFactor = 0;

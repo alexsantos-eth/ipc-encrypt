@@ -15,6 +15,10 @@ public class Encode {
     int[][] encodeMatrix;
     String encodeMaString;
 
+    /**
+     * @param input
+     * @return
+     */
     public Encode(Scanner input) {
         // INICIALIZAR
         this.input = input;
