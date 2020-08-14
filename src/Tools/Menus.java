@@ -7,71 +7,71 @@ import java.util.Scanner;
  */
 public class Menus {
 
-    /**
-     * @param title
-     */
-    // IMPRIMIR MENU
-    public static void printMenu(String title) {
-        // LIMPIAR
-        Utils.cls();
+	/**
+	 * @param title
+	 */
+	// IMPRIMIR MENU
+	public static void printMenu(String title) {
+		// LIMPIAR
+		Utils.cls();
 
-        // LINEAS DE SEPARACION
-        String[] lines = title.split("\n");
-        String divider = "-".repeat(lines[lines.length - 1].length());
+		// LINEAS DE SEPARACION
+		String[] lines = title.split("\n");
+		String divider = "-".repeat(lines[lines.length - 1].length());
 
-        // IMPRIMIR
-        Utils.print(divider + "\n" + title + "\n" + divider);
-    }
+		// IMPRIMIR
+		Utils.print(divider + "\n" + title + "\n" + divider);
+	}
 
-    /**
-     * @param options
-     * @param name
-     * @param input
-     * @return int
-     */
-    // OPTENER OPCION DE CUALQUIER MENU COMO NUMERO
-    public static int getOption(String options, String name, Scanner input) {
-        // SALIDA
-        int option = 0;
+	/**
+	 * @param options
+	 * @param name
+	 * @param input
+	 * @return int
+	 */
+	// OPTENER OPCION DE CUALQUIER MENU COMO NUMERO
+	public static int getOption(String options, String name, Scanner input) {
+		// SALIDA
+		int option = 0;
 
-        while (option == 0) {
-            // IMPRIMIR MENU
-            printMenu(options);
+		while (option == 0) {
+			// IMPRIMIR MENU
+			printMenu(options);
 
-            // FORMATO PARA INGRESAR
-            Utils.print("\n" + name + " => ");
+			// FORMATO PARA INGRESAR
+			Utils.print("\n" + name + " => ");
 
-            // RETORNAR ENTERO
-            option = input.nextInt();
-        }
+			// RETORNAR ENTERO
+			option = input.nextInt();
+		}
 
-        return option;
-    }
+		return option;
+	}
 
-    /**
-     * @param options
-     * @param name
-     * @param input
-     * @param string
-     * @return String
-     */
-    // OPTENER OPCION DE CUALQUIER MENU COMO STRING
-    public static String getOption(String options, String name, Scanner input, Boolean string) {
-        // SALIDA
-        String text = "";
+	/**
+	 * @param options
+	 * @param name
+	 * @param input
+	 * @param string
+	 * @return String
+	 */
+	// OPTENER OPCION DE CUALQUIER MENU COMO STRING
+	public static String getOption(String options, String name, Scanner input, Boolean string) {
+		// SALIDA
+		String text = "";
 
-        while (text.length() == 0) {
-            // IMPRIMIR MENU
-            printMenu(options);
+		while (text.length() == 0) {
+			// IMPRIMIR MENU
+			printMenu(options);
 
-            // FORMATO PARA INGRESAR
-            Utils.print("\n" + name + " => ");
+			// FORMATO PARA INGRESAR
+			Utils.print("\n" + name + " => ");
 
-            // ASIGNAR TEXTO
-            text = input.nextLine();
-        }
+			// ASIGNAR TEXTO
+			text = input.nextLine();
+		}
 
-        // RETORNAR TEXTO
-        return text;
-    }
+		// RETORNAR TEXTO
+		return text;
+	}
 }

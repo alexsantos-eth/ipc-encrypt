@@ -8,10 +8,10 @@ import Menus.MainMenu;
  */
 public class Main {
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        new MainMenu();
-    }
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		new MainMenu();
+	}
 }
