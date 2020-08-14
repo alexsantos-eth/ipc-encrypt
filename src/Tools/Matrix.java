@@ -354,6 +354,12 @@ public class Matrix {
 		return inverted;
 	}
 
+	/**
+	 * Convierte una matriz ASCII a string
+	 * 
+	 * @param asciiMatrix Matriz Long NxM
+	 * @return String
+	 */
 	public static String asciiMatrixToString(long[][] asciiMatrix) {
 		// SALIDA
 		String out = "";

@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import Tools.FileMatrix;
 import Tools.Matrix;
-import Tools.PrintMatrix;
 import Tools.Utils;
 
 /**
@@ -36,7 +35,9 @@ public class Decode {
 			double[][] inverted = Matrix.invertedMatrix(guideMatrix.fileMatrix);
 			long[][] decoded = Matrix.multiplyMatrix(textMatrix.fileMatrix, inverted);
 
-			Utils.print(Matrix.asciiMatrixToString(decoded));
+			Utils.print(
+					"\nDecifrado completo!, Este es tu mensaje original: \n\n" + Matrix.asciiMatrixToString(decoded) + "\n");
+			Utils.promptEnterKey();
 		}
 	}
 }
