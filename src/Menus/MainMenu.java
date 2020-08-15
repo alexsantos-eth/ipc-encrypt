@@ -39,6 +39,10 @@ public class MainMenu {
 				new Decode(input);
 				break;
 			}
+			case (3): {
+				new GaussMenu(input);
+				break;
+			}
 			case (4): {
 				breakMenu = true;
 				break;

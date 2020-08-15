@@ -1,4 +1,5 @@
 ./src/Menus/Encode.java
+./src/Menus/GaussMenu.java
 ./src/Menus/MainMenu.java
 ./src/Menus/Decode.java
 ./src/Main.java
@@ -6,5 +7,6 @@
 ./src/Tools/Files.java
 ./src/Tools/Menus.java
 ./src/Tools/Utils.java
+./src/Tools/Gauss.java
 ./src/Tools/FileMatrix.java
 ./src/Tools/Matrix.java

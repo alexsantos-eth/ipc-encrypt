@@ -23,7 +23,7 @@ public class Files {
 	}
 
 	public static void createMatrixFile(String matrixContent) {
-		// FECHA DIA / MES / MINUTOS
+		// FECHA DIA / MES / SEGUNDOS
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_ss");
 		LocalDateTime now = LocalDateTime.now();
 

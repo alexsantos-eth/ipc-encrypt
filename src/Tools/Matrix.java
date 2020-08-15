@@ -70,7 +70,7 @@ public class Matrix {
 
 				// OBTENER FACTOR
 				for (int matrixCols = 0; matrixCols < matrix[0].length; matrixCols++) {
-					Double product = (Double) (matrix[matrixRows][matrixCols] * fileMatrix[matrixCols][rowIndex]);
+					Double product = (double) (matrix[matrixRows][matrixCols] * fileMatrix[matrixCols][rowIndex]);
 					unit += product;
 				}
 
@@ -399,9 +399,9 @@ public class Matrix {
 			// AGREGAR PLACEHOLDERS
 			out += plain ? "\n" : " |\n";
 
-			if (!plain) {
+			if (!plain)
 				out += "<!>\n";
-			} else
+			else
 				out = out.replaceAll(",\n", "\n");
 		}
 
@@ -416,5 +416,58 @@ public class Matrix {
 
 		// RETORNAR STRING
 		return out;
+	}
+
+	public static String toString(double[][] matrix, boolean plain) {
+		// PLACEHOLDER
+		String out = plain ? "" : "<!>\n";
+
+		// FORMATO DE DIGITOS
+		String format = plain ? "0000;-0000" : "+0000.0000;-0000.0000";
+		DecimalFormat formater = new DecimalFormat(format);
+
+		// RECORRER MATRIZ
+		for (int row = 0; row < matrix.length; row++) {
+			for (int col = 0; col < matrix[0].length; col++)
+				// ASIGNAR ENTERO CON FORMATO
+				out += (plain ? "" : " | ") + formater.format(matrix[row][col]) + (plain ? "," : "");
+
+			// AGREGAR PLACEHOLDERS
+			out += plain ? "\n" : " |\n";
+
+			if (!plain)
+				out += "<!>\n";
+			else
+				out = out.replaceAll(",\n", "\n");
+		}
+
+		if (!plain) {
+			// OBTENER LONGITUD DE LINEA
+			String[] lines = out.split("<!>\n");
+			int maxLine = lines[lines.length - 1].length();
+
+			// REMPLAZAR PLACEHOLDER POR LINEAS
+			out = out.replaceAll("<!>", " " + "-".repeat(maxLine - 2));
+		}
+
+		// RETORNAR STRING
+		return out;
+	}
+
+	public static double[][] toDouble(int[][] matrix) {
+		// GLOBALES
+		int rows = matrix.length;
+		int cols = matrix[0].length;
+
+		// SALIDA
+		double[][] tmpMatrix = new double[rows][cols];
+
+		// CONVERTIR COEFICIENTES DOUBLE
+		for (int row = 0; row < rows; row++)
+			for (int col = 0; col < cols; col++)
+				tmpMatrix[row][col] = (double) matrix[row][col];
+
+		// RETORNAR SALIDA
+		return tmpMatrix;
 	}
 }
