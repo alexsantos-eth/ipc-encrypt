@@ -56,4 +56,24 @@ public class Utils {
 		System.out.flush();
 	}
 
+	/**
+	 * Redondea los valores de un array double a valores con 3 decimales
+	 * 
+	 * @param arry Array de dobles
+	 * @return String[]
+	 */
+	public static String[] roundArray(double[] arry) {
+		// SALIDA
+		String[] out = new String[arry.length];
+
+		// CONVERTIR
+		for (int index = 0; index < arry.length; index++) {
+			String format = String.format("%.3f", arry[index]);
+			out[index] = format.equals("-0.000") ? "0.000" : format;
+		}
+
+		// RETORNAR SALIDA
+		return out;
+	}
+
 }

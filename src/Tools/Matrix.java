@@ -418,42 +418,12 @@ public class Matrix {
 		return out;
 	}
 
-	public static String toString(double[][] matrix, boolean plain) {
-		// PLACEHOLDER
-		String out = plain ? "" : "<!>\n";
-
-		// FORMATO DE DIGITOS
-		String format = plain ? "0000;-0000" : "+0000.0000;-0000.0000";
-		DecimalFormat formater = new DecimalFormat(format);
-
-		// RECORRER MATRIZ
-		for (int row = 0; row < matrix.length; row++) {
-			for (int col = 0; col < matrix[0].length; col++)
-				// ASIGNAR ENTERO CON FORMATO
-				out += (plain ? "" : " | ") + formater.format(matrix[row][col]) + (plain ? "," : "");
-
-			// AGREGAR PLACEHOLDERS
-			out += plain ? "\n" : " |\n";
-
-			if (!plain)
-				out += "<!>\n";
-			else
-				out = out.replaceAll(",\n", "\n");
-		}
-
-		if (!plain) {
-			// OBTENER LONGITUD DE LINEA
-			String[] lines = out.split("<!>\n");
-			int maxLine = lines[lines.length - 1].length();
-
-			// REMPLAZAR PLACEHOLDER POR LINEAS
-			out = out.replaceAll("<!>", " " + "-".repeat(maxLine - 2));
-		}
-
-		// RETORNAR STRING
-		return out;
-	}
-
+	/**
+	 * Convierte una matriz de enteros a matriz de dobles
+	 * 
+	 * @param matrix Matriz entera NxM
+	 * @return double[][]
+	 */
 	public static double[][] toDouble(int[][] matrix) {
 		// GLOBALES
 		int rows = matrix.length;

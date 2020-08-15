@@ -5,6 +5,12 @@ package Tools;
  */
 public class Gauss {
 
+	/**
+	 * Resuelve un sistema de 3x3 utilizando Gauss-Jordan
+	 * 
+	 * @param gaussMatrix Sistemas de ecuaciones 3x3 expandida
+	 * @return double[]
+	 */
 	public static double[] resolve(int[][] gaussMatrix) {
 		// GLOBALES
 		int rows = gaussMatrix.length;
@@ -35,7 +41,6 @@ public class Gauss {
 				// RESTAR FILAS CON COEFICIENTE
 				for (int col = 0; col < cols; col++)
 					tmpMatrix[scale][col] = tmpMatrix[scale][col] - (tmpMatrix[row][col] * coeficient);
-
 			}
 		}
 

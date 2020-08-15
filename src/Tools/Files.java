@@ -9,6 +9,13 @@ import java.time.format.DateTimeFormatter;
  * Files
  */
 public class Files {
+
+	/**
+	 * Crea un archivo nuevo en la ruta especificada
+	 * 
+	 * @param content Contenido del archivo
+	 * @param path    Ruta del archivo
+	 */
 	public static void createFile(String content, String path) {
 		try {
 			// CREAR
@@ -22,6 +29,11 @@ public class Files {
 		}
 	}
 
+	/**
+	 * Crear archivo txt con matriz plana
+	 * 
+	 * @param matrixContent
+	 */
 	public static void createMatrixFile(String matrixContent) {
 		// FECHA DIA / MES / SEGUNDOS
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_ss");

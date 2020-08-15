@@ -13,6 +13,10 @@ import Tools.Utils;
 public class GaussMenu {
 	Scanner input;
 
+	/**
+	 * @param input
+	 * @return
+	 */
 	public GaussMenu(Scanner input) {
 		// INICIALIZAR
 		this.input = input;
@@ -38,8 +42,14 @@ public class GaussMenu {
 			if (guideMatrix.fileMatrix.length == 3 && guideMatrix.fileMatrix[0].length == 4) {
 				// RESOLVER SISTEMA
 				double[] results = Gauss.resolve(guideMatrix.fileMatrix);
+				String[] textResults = Utils.roundArray(results);
 
-				Utils.print(results[0] + " " + results[1] + " " + results[2]);
+				// IMPRIMIR RESPUESTAS
+				Utils.print("\nSistema resuelto!, estas son las respuestas:\n\nx = " + textResults[0] + ", y = "
+						+ textResults[1] + ", z = " + textResults[2] + "\n");
+
+				// SALIR
+				Utils.promptEnterKey();
 
 				// SALIR
 				breakMenu = true;
