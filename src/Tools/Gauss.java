@@ -43,7 +43,7 @@ public class Gauss {
 				// RESTAR FILAS CON COEFICIENTE
 				for (int col = 0; col < cols; col++) {
 					tmpMatrix[scale][col] = tmpMatrix[scale][col] - (tmpMatrix[row][col] * coefficient);
-					Utils.log("GET DIFFERENCE BETWEEN PIVOT " + (row + 1) + " AND [" + row + "][" + col + "] COEFFICIENT",
+					Utils.log("GET DIFFERENCE BETWEEN PIVOT " + (row + 1) + " AND [" + scale + "][" + col + "] COEFFICIENT",
 							Matrix.toString(tmpMatrix, false));
 				}
 			}
