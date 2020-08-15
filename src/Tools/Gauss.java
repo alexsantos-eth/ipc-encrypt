@@ -29,6 +29,8 @@ public class Gauss {
 			for (int col = 0; col < cols; col++)
 				tmpMatrix[row][col] = tmpMatrix[row][col] / pivot;
 
+			Utils.log("CONVERT PIVOT " + (row + 1) + " TO 1", Matrix.toString(tmpMatrix, false));
+
 			// RECORRER FILA PARA HACER 0
 			for (int times = 0; times < repeat; times++) {
 				// CALCULAR POSICION DEL ELEMENTO EN FILA
@@ -36,16 +38,23 @@ public class Gauss {
 				int scale = row != 1 ? repeat - sign + (times * (sign - row)) : 2;
 
 				// COEFICIENTE A HACER 0
-				double coeficient = tmpMatrix[scale][row];
+				double coefficient = tmpMatrix[scale][row];
 
 				// RESTAR FILAS CON COEFICIENTE
-				for (int col = 0; col < cols; col++)
-					tmpMatrix[scale][col] = tmpMatrix[scale][col] - (tmpMatrix[row][col] * coeficient);
+				for (int col = 0; col < cols; col++) {
+					tmpMatrix[scale][col] = tmpMatrix[scale][col] - (tmpMatrix[row][col] * coefficient);
+					Utils.log("GET DIFFERENCE BETWEEN PIVOT " + (row + 1) + " AND [" + row + "][" + col + "] COEFFICIENT",
+							Matrix.toString(tmpMatrix, false));
+				}
 			}
 		}
 
 		// ARREGLAR VALOR FLOTANTE
 		tmpMatrix[0][3] = tmpMatrix[0][3] - (tmpMatrix[1][3] * tmpMatrix[0][1]);
+		tmpMatrix[0][1] = 0;
+
+		// GUARDAR
+		Utils.log("RESOLVE X VALUE OF ROW 1", Matrix.toString(tmpMatrix, false));
 
 		// ASIGNAR RESPUESTAS
 		for (int res = 0; res < rows; res++)

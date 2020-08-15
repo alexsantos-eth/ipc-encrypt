@@ -1,6 +1,10 @@
 package Tools;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Utils
@@ -65,15 +69,49 @@ public class Utils {
 	public static String[] roundArray(double[] arry) {
 		// SALIDA
 		String[] out = new String[arry.length];
+		String log = "";
 
 		// CONVERTIR
 		for (int index = 0; index < arry.length; index++) {
 			String format = String.format("%.3f", arry[index]);
 			out[index] = format.equals("-0.000") ? "0.000" : format;
+			log += "[" + out[index] + "] ";
 		}
+
+		// GUARDAR
+		Utils.log("ROUND ARRAY", log);
 
 		// RETORNAR SALIDA
 		return out;
+	}
+
+	public static void log(String title, String content) {
+		try {
+			// BUFFER
+			String line = "";
+			String tmpFileStr = "";
+			BufferedReader reader = new BufferedReader(new FileReader("../process.log"));
+
+			// LEER ARCHIVO
+			while ((line = reader.readLine()) != null)
+				tmpFileStr += line + "\n";
+
+			// CREAR FECHA
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM hh:mm:ss");
+			LocalDateTime now = LocalDateTime.now();
+
+			// ASIGNAR TEXTO
+			tmpFileStr += dtf.format(now) + " INFO " + title + "\n" + content + "\n";
+
+			// CREAR ARCHIVO
+			Files.createFile(tmpFileStr, "../process.log");
+
+			// CERRAR READER
+			reader.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

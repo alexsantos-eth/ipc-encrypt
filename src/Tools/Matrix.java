@@ -44,6 +44,9 @@ public class Matrix {
 			outMatrix[matrixRows] = currentRow;
 		}
 
+		// GUARDAR MATRIZ
+		Utils.log("MULTIPLY MATRIX", toString(outMatrix, false));
+
 		// RETORNAR FILA
 		return outMatrix;
 	}
@@ -81,6 +84,9 @@ public class Matrix {
 			// ASIGNAR FILA
 			outMatrix[matrixRows] = currentRow;
 		}
+
+		// GUARDAR MATRIZ
+		Utils.log("MULTIPLY MATRIX", toString(outMatrix, false));
 
 		// RETORNAR FILA
 		return outMatrix;
@@ -165,7 +171,10 @@ public class Matrix {
 		}
 
 		// RETORNAR MATRIZ
-		return new FileMatrix(fileMatrix, toString(fileMatrix, false));
+		FileMatrix respMatrix = new FileMatrix(fileMatrix, toString(fileMatrix, false));
+		Utils.log("READ KEY FILE MATRIX", respMatrix.matrixString);
+
+		return respMatrix;
 	}
 
 	/**
@@ -184,7 +193,12 @@ public class Matrix {
 		int rows = length / cols;
 
 		// CREAR MATRIZ
+		String[][] tmpMatrix = new String[rows][cols];
 		int[][] matrix = new int[rows][cols];
+
+		// ARRAY DE STRING
+		for (int charIndex = 0; charIndex < length; charIndex++)
+			ascii[charIndex] = (int) text.charAt(charIndex);
 
 		// ARRAY DE INT
 		for (int charIndex = 0; charIndex < length; charIndex++)
@@ -193,8 +207,14 @@ public class Matrix {
 		// ASIGNAR A MATRIZ
 		for (int rowsIndex = 0; rowsIndex < rows; rowsIndex++)
 			// RECORRER COLUMNAS
-			for (int colsIndex = 0; colsIndex < cols; colsIndex++)
+			for (int colsIndex = 0; colsIndex < cols; colsIndex++) {
+				tmpMatrix[rowsIndex][colsIndex] = Character.toString((char) ascii[colsIndex + (rowsIndex * cols)]);
 				matrix[rowsIndex][colsIndex] = ascii[colsIndex + (rowsIndex * cols)];
+			}
+
+		// GUARDAR MATRIZ DE TEXTO
+		Utils.log("MAP ASCII", toString(tmpMatrix));
+		Utils.log("MAP CHAR", toString(matrix, false));
 
 		// DEVOLVER TEXTO
 		return new FileMatrix(matrix, toString(matrix, false));
@@ -351,6 +371,9 @@ public class Matrix {
 		// MULTIPLICAR POR DETERMINANTE
 		double[][] inverted = multiplyMatrixFactor(det, nMatrix);
 
+		// GUARDAR MATRIZ
+		Utils.log("INVERT MATRIX", toString(inverted, false));
+
 		// RETORNAR INVERSA
 		return inverted;
 	}
@@ -371,6 +394,9 @@ public class Matrix {
 				int currentChar = (int) asciiMatrix[row][col];
 				out += Character.toString((char) currentChar);
 			}
+
+		// GUARDAR
+		Utils.log("CONVERT FROM ASCII TO STRING", out);
 
 		// RETORNAR SALIDA
 		return out;
@@ -413,6 +439,122 @@ public class Matrix {
 			// REMPLAZAR PLACEHOLDER POR LINEAS
 			out = out.replaceAll("<!>", " " + "-".repeat(maxLine - 2));
 		}
+
+		// RETORNAR STRING
+		return out;
+	}
+
+	/**
+	 * Convierte una matriz doble a texto
+	 * 
+	 * @param matrix Matriz NxM
+	 * @return String Texto de la matriz
+	 */
+	public static String toString(double[][] matrix, boolean plain) {
+		// PLACEHOLDER
+		String out = plain ? "" : "<!>\n";
+
+		// FORMATO DE DIGITOS
+		String format = plain ? "000.000;-000.000" : "+000.000;-000.000";
+		DecimalFormat formater = new DecimalFormat(format);
+
+		// RECORRER MATRIZ
+		for (int row = 0; row < matrix.length; row++) {
+			for (int col = 0; col < matrix[0].length; col++)
+				// ASIGNAR ENTERO CON FORMATO
+				out += (plain ? "" : " | ") + formater.format(matrix[row][col]) + (plain ? "," : "");
+
+			// AGREGAR PLACEHOLDERS
+			out += plain ? "\n" : " |\n";
+
+			if (!plain)
+				out += "<!>\n";
+			else
+				out = out.replaceAll(",\n", "\n");
+		}
+
+		if (!plain) {
+			// OBTENER LONGITUD DE LINEA
+			String[] lines = out.split("<!>\n");
+			int maxLine = lines[lines.length - 1].length();
+
+			// REMPLAZAR PLACEHOLDER POR LINEAS
+			out = out.replaceAll("<!>", " " + "-".repeat(maxLine - 2));
+		}
+
+		// RETORNAR STRING
+		return out;
+	}
+
+	/**
+	 * Convierte una matriz long a texto
+	 * 
+	 * @param matrix Matriz NxM
+	 * @return String Texto de la matriz
+	 */
+	public static String toString(long[][] matrix, boolean plain) {
+		// PLACEHOLDER
+		String out = plain ? "" : "<!>\n";
+
+		// FORMATO DE DIGITOS
+		String format = plain ? "0000;-0000" : "+0000;-0000";
+		DecimalFormat formater = new DecimalFormat(format);
+
+		// RECORRER MATRIZ
+		for (int row = 0; row < matrix.length; row++) {
+			for (int col = 0; col < matrix[0].length; col++)
+				// ASIGNAR ENTERO CON FORMATO
+				out += (plain ? "" : " | ") + formater.format(matrix[row][col]) + (plain ? "," : "");
+
+			// AGREGAR PLACEHOLDERS
+			out += plain ? "\n" : " |\n";
+
+			if (!plain)
+				out += "<!>\n";
+			else
+				out = out.replaceAll(",\n", "\n");
+		}
+
+		if (!plain) {
+			// OBTENER LONGITUD DE LINEA
+			String[] lines = out.split("<!>\n");
+			int maxLine = lines[lines.length - 1].length();
+
+			// REMPLAZAR PLACEHOLDER POR LINEAS
+			out = out.replaceAll("<!>", " " + "-".repeat(maxLine - 2));
+		}
+
+		// RETORNAR STRING
+		return out;
+	}
+
+	/**
+	 * Convierte una matriz string a texto como tabla
+	 * 
+	 * @param matrix Matriz NxM
+	 * @return String Texto de la matriz
+	 */
+	public static String toString(String[][] matrix) {
+		// PLACEHOLDER
+		String out = "<!>\n";
+
+		// RECORRER MATRIZ
+		for (int row = 0; row < matrix.length; row++) {
+			for (int col = 0; col < matrix[0].length; col++)
+				// ASIGNAR ENTERO CON FORMATO
+				out += " | " + matrix[row][col];
+
+			// AGREGAR PLACEHOLDERS
+			out += " |\n";
+			out += "<!>\n";
+		}
+
+		// OBTENER LONGITUD DE LINEA
+		String[] lines = out.split("<!>\n");
+		int maxLine = lines[lines.length - 1].length();
+
+		// REMPLAZAR PLACEHOLDER POR LINEAS
+		out = out.replaceAll("<!>", " " + "-".repeat(maxLine - 2));
 
 		// RETORNAR STRING
 		return out;

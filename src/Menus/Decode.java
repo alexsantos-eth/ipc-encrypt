@@ -3,7 +3,6 @@ package Menus;
 import java.util.Scanner;
 
 import Tools.FileMatrix;
-import Tools.Files;
 import Tools.Matrix;
 import Tools.Utils;
 
@@ -50,7 +49,6 @@ public class Decode {
 
 				// MOSTRAR MATRIZ
 				Utils.print("\nDecifrado completo!, Este es tu mensaje original: \n\n" + decodeString + "\n");
-				Files.createMatrixFile(decodeString);
 				Utils.promptEnterKey();
 
 				// SALIR
