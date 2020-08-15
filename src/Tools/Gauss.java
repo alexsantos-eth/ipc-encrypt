@@ -1,7 +1,7 @@
 package Tools;
 
 /**
- * Gauss
+ * Clase estatica con operaciones para sistemas de ecuaciones 3x3
  */
 public class Gauss {
 

@@ -1,10 +1,8 @@
 package Interfaces;
 
 /**
- * OutputMatrix
- * 
- * @see int[][] fileMatriz Matriz entera
- * @see String matrixString Matriz como texto
+ * OutputMatrix Tipo de dato para matrices como texto y matrices enteras
+ * normales
  */
 public interface OutputMatrix {
 	// PROPIEDADES

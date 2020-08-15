@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.io.File;
 
 /**
- * Matrix
+ * Clase estatica con operaciones entre matrices
  */
 public class Matrix {
 

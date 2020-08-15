@@ -5,11 +5,13 @@ import java.util.Scanner;
 import Tools.Menus;
 
 /**
- * MainMenu
+ * Menu principal del programa con opciones para cada submenu
  */
 public class MainMenu {
 
 	/**
+	 * El menu principal es el punto de entrada desde el main
+	 * 
 	 * @return
 	 */
 	public MainMenu() {

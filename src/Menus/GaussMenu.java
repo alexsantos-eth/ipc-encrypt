@@ -8,13 +8,16 @@ import Tools.Matrix;
 import Tools.Utils;
 
 /**
- * Gauss
+ * Clase con el menu para resolver ecuaciones 3x3 Gauss-Jordan
  */
 public class GaussMenu {
 	Scanner input;
 
 	/**
-	 * @param input
+	 * Cada submenu debe obtener el Scanner global del menu principal para optimizar
+	 * instancias
+	 * 
+	 * @param input Scanner global
 	 * @return
 	 */
 	public GaussMenu(Scanner input) {

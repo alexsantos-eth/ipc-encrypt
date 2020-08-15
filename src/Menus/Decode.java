@@ -7,13 +7,16 @@ import Tools.Matrix;
 import Tools.Utils;
 
 /**
- * Decode
+ * Menu para decifrar cadenas de textos alfanumericos
  */
 public class Decode {
 	Scanner input;
 
 	/**
-	 * @param input
+	 * Cada submenu debe obtener el Scanner global del menu principal para optimizar
+	 * instancias
+	 * 
+	 * @param input Scanner global
 	 * @return
 	 */
 	public Decode(Scanner input) {

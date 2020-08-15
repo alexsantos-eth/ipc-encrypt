@@ -2,6 +2,9 @@ package Tools;
 
 import Interfaces.OutputMatrix;
 
+/**
+ * Tipo de dato necesario en el programa para guardar matrices y generar logs
+ */
 public class FileMatrix implements OutputMatrix {
 	// PROPIEDADES
 	public int[][] fileMatrix = new int[0][0];

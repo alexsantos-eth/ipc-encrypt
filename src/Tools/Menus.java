@@ -3,7 +3,7 @@ package Tools;
 import java.util.Scanner;
 
 /**
- * Menus
+ * Clase estatica para mostrar menus en el programa
  */
 public class Menus {
 

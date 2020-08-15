@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Files
+ * Clase estatica para generar archivos y arhivos de matrices
  */
 public class Files {
 

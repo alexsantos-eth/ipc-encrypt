@@ -7,12 +7,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Utils
+ * Clase estatica con herramientas generales en todo el proyecto
  */
 public class Utils {
 
 	/**
-	 * IMPRIMIR EN CONSOLA
+	 * Imprimir en consola System.out.print()
 	 * 
 	 * @param msg
 	 */
@@ -85,6 +85,12 @@ public class Utils {
 		return out;
 	}
 
+	/**
+	 * Genera logs de todos los procesos en un archivo process.log
+	 * 
+	 * @param title   Titulo del log
+	 * @param content Contenido del log
+	 */
 	public static void log(String title, String content) {
 		try {
 			// BUFFER

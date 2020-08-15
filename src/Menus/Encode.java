@@ -9,7 +9,7 @@ import Tools.Menus;
 import Tools.Utils;
 
 /**
- * Encode
+ * Menu para cifrar cadenas de textos alfanumericos
  */
 public class Encode {
 	Scanner input;
@@ -17,7 +17,8 @@ public class Encode {
 	String encodeMaString;
 
 	/**
-	 * Clase para cifrar mensaje
+	 * Cada submenu debe obtener el Scanner global del menu principal para optimizar
+	 * instancias
 	 * 
 	 * @param input Scanner global
 	 * @return
