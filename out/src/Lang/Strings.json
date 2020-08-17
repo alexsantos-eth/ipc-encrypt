@@ -1,0 +1,11 @@
+{
+	"es": {
+		"navbar": {
+			"title": "Reporte de practica"
+		},
+		"steps":{
+			"next": "Siguiente",
+			"back": "Atras"
+		}
+	}
+}

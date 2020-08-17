@@ -3,6 +3,7 @@ package Tools;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -71,15 +72,20 @@ public class Utils {
 		String[] out = new String[arry.length];
 		String log = "";
 
+		// FORMATER
+		String formatS = "+000.000;-000.000";
+		DecimalFormat formater = new DecimalFormat(formatS);
+
 		// CONVERTIR
 		for (int index = 0; index < arry.length; index++) {
 			String format = String.format("%.3f", arry[index]);
-			out[index] = format.equals("-0.000") ? "0.000" : format;
-			log += "[" + out[index] + "] ";
+			out[index] = format.equals("-0.000") ? "+000.000" : formater.format(Double.parseDouble(format));
+			log += " | " + out[index];
 		}
 
 		// GUARDAR
-		Utils.log("ROUND ARRAY", log);
+		Utils.log("REDONDEAR VALORES",
+				"----------------------------------\n|    X     |    Y     |    Z     |\n----------------------------------\n" + log.substring(1) + " |\n----------------------------------\n");
 
 		// RETORNAR SALIDA
 		return out;
@@ -95,12 +101,17 @@ public class Utils {
 		try {
 			// BUFFER
 			String line = "";
+			String jsonLine = "";
 			String tmpFileStr = "";
+			String tmpFileJson = "";
 			BufferedReader reader = new BufferedReader(new FileReader("../process.log"));
+			BufferedReader readerJSON = new BufferedReader(new FileReader("../out/build/data.js"));
 
 			// LEER ARCHIVO
 			while ((line = reader.readLine()) != null)
 				tmpFileStr += line + "\n";
+			while ((jsonLine = readerJSON.readLine()) != null)
+				tmpFileJson += jsonLine + "\n";
 
 			// CREAR FECHA
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM hh:mm:ss");
@@ -109,11 +120,20 @@ public class Utils {
 			// ASIGNAR TEXTO
 			tmpFileStr += dtf.format(now) + " INFO " + title + "\n" + content + "\n";
 
+			// CREAR JSON
+			tmpFileJson = tmpFileJson.substring(0, tmpFileJson.length() - 3);
+			tmpFileJson += ",{" + "date:\"" + now.toString() + "\"" + ",title:\"" + title + "\",content:\"" + content
+					+ "\"}]}";
+			tmpFileJson = tmpFileJson.replaceAll("\n", "!<");
+			tmpFileJson = tmpFileJson.replace("window.REGISTRY = {data:[,", "window.REGISTRY = {data:[");
+
 			// CREAR ARCHIVO
 			Files.createFile(tmpFileStr, "../process.log");
+			Files.createFile(tmpFileJson, "../out/build/data.js");
 
 			// CERRAR READER
 			reader.close();
+			readerJSON.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

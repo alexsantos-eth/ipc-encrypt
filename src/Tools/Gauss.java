@@ -29,7 +29,7 @@ public class Gauss {
 			for (int col = 0; col < cols; col++)
 				tmpMatrix[row][col] = tmpMatrix[row][col] / pivot;
 
-			Utils.log("CONVERT PIVOT " + (row + 1) + " TO 1", Matrix.toString(tmpMatrix, false));
+			Utils.log("CONVERTIR PIVOTE " + (row + 1) + " A 1", Matrix.toString(tmpMatrix, false));
 
 			// RECORRER FILA PARA HACER 0
 			for (int times = 0; times < repeat; times++) {
@@ -43,7 +43,7 @@ public class Gauss {
 				// RESTAR FILAS CON COEFICIENTE
 				for (int col = 0; col < cols; col++) {
 					tmpMatrix[scale][col] = tmpMatrix[scale][col] - (tmpMatrix[row][col] * coefficient);
-					Utils.log("GET DIFFERENCE BETWEEN PIVOT " + (row + 1) + " AND [" + scale + "][" + col + "] COEFFICIENT",
+					Utils.log("RESTAR PIVOTE " + (row + 1) + " CON EL COEFICIENTE [" + scale + "][" + col + "]",
 							Matrix.toString(tmpMatrix, false));
 				}
 			}
@@ -54,7 +54,7 @@ public class Gauss {
 		tmpMatrix[0][1] = 0;
 
 		// GUARDAR
-		Utils.log("RESOLVE X VALUE OF ROW 1", Matrix.toString(tmpMatrix, false));
+		Utils.log("RESOLVER EL VALOR DE X EN LA FILA 1", Matrix.toString(tmpMatrix, false));
 
 		// ASIGNAR RESPUESTAS
 		for (int res = 0; res < rows; res++)

@@ -1,0 +1,15 @@
+.container {
+	width: 100%;
+	overflow: hidden;
+}
+
+.slider {
+	transition: transform 0.3s ease-in-out;
+	display: flex;
+}
+
+
+.stepper{
+	font-weight: bold!important;
+	font-family: 'Roboto', Roboto, sans-serif !important;
+}

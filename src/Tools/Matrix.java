@@ -45,7 +45,7 @@ public class Matrix {
 		}
 
 		// GUARDAR MATRIZ
-		Utils.log("MULTIPLY MATRIX", toString(outMatrix, false));
+		Utils.log("MULTIPLICAR MATRICES", toString(outMatrix, false));
 
 		// RETORNAR FILA
 		return outMatrix;
@@ -86,7 +86,7 @@ public class Matrix {
 		}
 
 		// GUARDAR MATRIZ
-		Utils.log("MULTIPLY MATRIX", toString(outMatrix, false));
+		Utils.log("MULTIPLICAR MATRICES", toString(outMatrix, false));
 
 		// RETORNAR FILA
 		return outMatrix;
@@ -172,7 +172,7 @@ public class Matrix {
 
 		// RETORNAR MATRIZ
 		FileMatrix respMatrix = new FileMatrix(fileMatrix, toString(fileMatrix, false));
-		Utils.log("READ KEY FILE MATRIX", respMatrix.matrixString);
+		Utils.log("LEER MATRIZ CON CLAVES DE ARCHIVO", respMatrix.matrixString);
 
 		return respMatrix;
 	}
@@ -213,8 +213,8 @@ public class Matrix {
 			}
 
 		// GUARDAR MATRIZ DE TEXTO
-		Utils.log("MAP ASCII", toString(tmpMatrix));
-		Utils.log("MAP CHAR", toString(matrix, false));
+		Utils.log("OBTENER CARACTERES", toString(tmpMatrix));
+		Utils.log("CONVERTIR A CODIGO ASCII", toString(matrix, false));
 
 		// DEVOLVER TEXTO
 		return new FileMatrix(matrix, toString(matrix, false));
@@ -372,7 +372,7 @@ public class Matrix {
 		double[][] inverted = multiplyMatrixFactor(det, nMatrix);
 
 		// GUARDAR MATRIZ
-		Utils.log("INVERT MATRIX", toString(inverted, false));
+		Utils.log("INVERTIR MATRIZ", toString(inverted, false));
 
 		// RETORNAR INVERSA
 		return inverted;
@@ -396,7 +396,7 @@ public class Matrix {
 			}
 
 		// GUARDAR
-		Utils.log("CONVERT FROM ASCII TO STRING", out);
+		Utils.log("CONVERTIR DE CODIGO ASCII A TEXTO", "-".repeat(out.length()) +"\n| " + out + " |\n"+"-".repeat(out.length()));
 
 		// RETORNAR SALIDA
 		return out;
